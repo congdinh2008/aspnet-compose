@@ -3,12 +3,26 @@ services:
     container_name: todo-client
     depends_on:
       - backend
+      - database
     image: todo-client
     ports:
       - "4200:80"
+      - "4200:443"
 
   backend:
     container_name: todo-server
     image: todo-server
+    depends_on:
+      - database
     ports:
-      - "8080:8080"
+      - "8080:80"
+      - "8080:443"
+
+  database:
+    container_name: todo-database
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      SA_PASSWORD: "Admin@1234"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "8088:1433"
