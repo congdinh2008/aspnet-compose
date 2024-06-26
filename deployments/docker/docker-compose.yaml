@@ -1,0 +1,14 @@
+services:
+  frontend:
+    container_name: todo-client
+    depends_on:
+      - backend
+    image: todo-client
+    ports:
+      - "4200:80"
+
+  backend:
+    container_name: todo-server
+    image: todo-server
+    ports:
+      - "8080:8080"

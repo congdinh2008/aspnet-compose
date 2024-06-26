@@ -1,0 +1,9 @@
+services:
+  todo-server:
+    build:
+      context: ../../src/server
+    image: todo-server
+  todo-client:
+    build:
+      context: ../../src/client
+    image: todo-client
